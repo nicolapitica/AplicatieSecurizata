@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tickets</title>
+</head>
+<body>
+    <h1>Tickets - vulnerabil</h1>
+
+    <p>Utilizator: {{ user[1] }}</p>
+
+    <a href="/tickets/create">
+        <button>Create ticket</button>
+    </a>
+
+    <br><br>
+
+    <form method="GET" action="/search">
+        <input type="text" name="q" placeholder="Search tickets">
+        <button type="submit">Search</button>
+    </form>
+
+    <br>
+
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Severity</th>
+            <th>Status</th>
+            <th>Owner ID</th>
+            <th>Created</th>
+            <th>Updated</th>
+            <th>View</th>
+        </tr>
+
+        {% for t in tickets %}
+        <tr>
+            <td>{{ t[0] }}</td>
+            <td>{{ t[1] }}</td>
+            <td>{{ t[2] }}</td>
+            <td>{{ t[3] }}</td>
+            <td>{{ t[4] }}</td>
+            <td>{{ t[5] }}</td>
+            <td>{{ t[6] }}</td>
+            <td>{{ t[7] }}</td>
+            <td><a href="/tickets/{{ t[0] }}">View</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <br>
+    <a href="/dashboard">Dashboard</a>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Ticket</title>
+</head>
+<body>
+    <h1>Create Ticket</h1>
+
+    <form method="POST">
+        <label>Title:</label><br>
+        <input type="text" name="title"><br><br>
+
+        <label>Description:</label><br>
+        <textarea name="description"></textarea><br><br>
+
+        <label>Severity:</label><br>
+        <select name="severity">
+            <option>LOW</option>
+            <option>MED</option>
+            <option>HIGH</option>
+        </select><br><br>
+
+        <button type="submit">Create</button>
+    </form>
+
+    <br>
+    <a href="/tickets">Back to tickets</a>
+</body>
+</html>
