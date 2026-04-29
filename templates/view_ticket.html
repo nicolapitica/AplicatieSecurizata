@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>View Ticket</title>
+</head>
+<body>
+    <h1>View Ticket</h1>
+
+    <p><b>ID:</b> {{ ticket[0] }}</p>
+    <p><b>Title:</b> {{ ticket[1] }}</p>
+    <p><b>Description:</b> {{ ticket[2] }}</p>
+    <p><b>Severity:</b> {{ ticket[3] }}</p>
+    <p><b>Status:</b> {{ ticket[4] }}</p>
+    <p><b>Owner ID:</b> {{ ticket[5] }}</p>
+    <p><b>Created:</b> {{ ticket[6] }}</p>
+    <p><b>Updated:</b> {{ ticket[7] }}</p>
+
+    <h2>Change status</h2>
+
+    <form method="POST" action="/tickets/{{ ticket[0] }}/status">
+        <select name="status">
+            <option value="OPEN">OPEN</option>
+            <option value="IN_PROGRESS">IN_PROGRESS</option>
+            <option value="RESOLVED">RESOLVED</option>
+        </select>
+
+        <button type="submit">Update status</button>
+    </form>
+
+    <br>
+    <a href="/tickets">Back to tickets</a>
+</body>
+</html>

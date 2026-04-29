@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+</head>
+<body>
+    <h1>Dashboard AuthX</h1>
+
+    <p>Utilizator logat:</p>
+    <ul>
+        <li>ID: {{ user[0] }}</li>
+        <li>Email: {{ user[1] }}</li>
+        <li>Rol: {{ user[2] }}</li>
+    </ul>
+    <br><br>
+
+    <a href="/tickets">
+        <button>Tickets</button>
+    </a>
+    <br><br>
+    <a href="/reset">
+        <button>Resetare parola</button>
+    </a>
+    
+    <a href="/logout">
+        <button>Logout</button>
+    </a>
+
+    {% if users %}
+        <h2>Debug users - vulnerabil</h2>
+        <p>Aceasta pagina simuleaza accesul la baza de date compromis.</p>
+        <table border="1">
+            <tr>
+                <th>ID</th>
+                <th>Email</th>
+                <th>Password hash / parola in clar</th>
+                <th>Rol</th>
+                <th>Created at</th>
+                <th>Locked</th>
+            </tr>
+            {% for u in users %}
+            <tr>
+                <td>{{ u[0] }}</td>
+                <td>{{ u[1] }}</td>
+                <td>{{ u[2] }}</td>
+                <td>{{ u[3] }}</td>
+                <td>{{ u[4] }}</td>
+                <td>{{ u[5] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+</body>
+</html>
