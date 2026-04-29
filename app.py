@@ -14,10 +14,11 @@ def init_db():
     conn = get_db()
     c = conn.cursor()
 
+#nu folosesc UNIQUE la email => duplicate
     c.execute("""
         CREATE TABLE IF NOT EXISTS users (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            email TEXT UNIQUE,
+            email TEXT , 
             password_hash TEXT,
             role TEXT DEFAULT 'USER',
             created_at TEXT,
@@ -358,9 +359,8 @@ def view_ticket(ticket_id):
 
     conn = get_db()
     c = conn.cursor()
-
     # VULNERABIL:
-    # IDOR - nu verifica daca ticket.owner_id == user.id
+    # putem vedea detaiile tuturor ticketelor, nu doar ale utilizatorului logat
     c.execute("""
         SELECT id, title, description, severity, status, owner_id, created_at, updated_at
         FROM tickets
@@ -400,6 +400,7 @@ def search():
     conn.close()
 
     return render_template("search.html", results=results, q=q)
+
 @app.route("/tickets/<int:ticket_id>/status", methods=["POST"])
 def update_ticket_status(ticket_id):
     user = get_current_user()
